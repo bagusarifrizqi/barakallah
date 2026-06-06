@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teruntuk Orang Spesial ❤️</title>
+    <style>
+        /* ============================================
+           RESET & VARIABEL WARNA (MUDAH DIGANTI)
+           ============================================ */
+        :root {
+            --primary-pink: #FFB6D9;
+            --dark-pink: #FF69B4;
+            --light-pink: #FFF0F8;
+            --gold: #FFD700;
+            --white: #FFFFFF;
+            --text-dark: #2D1B3D;
+            --shadow-color: rgba(255, 182, 217, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           OPENING PAGE (Halaman Pembuka)
+           ============================================ */
+        .container-opening {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background dengan bintang dan hati */
+        .stars-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .star, .heart-bg {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .star {
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            animation: twinkle 3s infinite;
+        }
+
+        .heart-bg {
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float-bg 6s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float-bg {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Opening content */
+        .opening-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .opening-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: scaleIn 1s ease-out;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, var(--dark-pink) 0%, var(--primary-pink) 100%);
+            color: var(--white);
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-start::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .btn-start:hover::before {
+            left: 100%;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px var(--shadow-color);
+        }
+
+        .btn-start:active {
+            transform: translateY(-1px);
+        }
+
+        /* ============================================
+           MAIN PAGE (Halaman Utama)
+           ============================================ */
+        .container-main {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+        }
+
+        /* Photo Section */
+        .photo-section {
+            width: 100%;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            background: linear-gradient(180deg, var(--light-pink) 0%, rgba(255, 255, 255, 0.5) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Parallax background */
+        .parallax-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="1000" height="1000" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+            animation: parallaxMove 20s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes parallaxMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .photo-frame {
+            position: relative;
+            z-index: 5;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .photo-circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--primary-pink));
+            padding: 5px;
+            box-shadow: 0 20px 60px var(--shadow-color);
+            position: relative;
+        }
+
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+        }
+
+        /* Photo frame decoration */
+        .photo-circle::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L61 40 L92 40 L67 60 L78 90 L50 70 L22 90 L33 60 L8 40 L39 40 Z" fill="%23FFD700"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .title-section {
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .title-main {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .recipient-name {
+            font-size: 2rem;
+            color: var(--dark-pink);
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            cursor: pointer;
+            text-decoration: underline wavy var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .recipient-name:hover {
+            transform: scale(1.05);
+            color: var(--primary-pink);
+        }
+
+        /* ============================================
+           HEART RAIN (Hujan Hati 3D)
+           ============================================ */
+        .rain-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .heart-rain {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.8;
+            animation: heartRain 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heartRain {
+            0% {
+                transform: translateY(-10vh) scaleX(1) rotateX(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) scaleX(0.8) rotateX(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           SPARKLE EFFECT (Efek Kilau)
+           ============================================ */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .sparkle::before {
+            content: '✨';
+            font-size: 1.5rem;
+            animation: sparkleAnimation 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, -50px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           LETTER SECTION (Surat Ucapan)
+           ============================================ */
+        .letter-section {
+            width: 100%;
+            padding: 3rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .letter-box {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 60px var(--shadow-color);
+            border: 2px solid rgba(255, 182, 217, 0.3);
+            animation: slideInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .letter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--gold), var(--primary-pink));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .countdown-timer {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            margin-bottom: 2rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .letter-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: center;
+            min-height: 150px;
+            position: relative;
+        }
+
+        .letter-content.typing {
+            border-right: 3px solid var(--dark-pink);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { border-right-color: var(--dark-pink); }
+            50%, 100% { border-right-color: transparent; }
+        }
+
+        .letter-from {
+            text-align: right;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--primary-pink);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           COUNTDOWN SECTION
+           ============================================ */
+        .countdown-section {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+
+        .countdown-display {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            font-family: 'Courier New', monospace;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ============================================
+           CAKE SECTION (Kue Ulang Tahun)
+           ============================================ */
+        .cake-section {
+            width: 100%;
+            padding: 3rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            background: linear-gradient(135deg, rgba(255, 182, 217, 0.2), rgba(255, 255, 255, 0.5));
+            position: relative;
+        }
+
+        .cake-container {
+            position: relative;
+            animation: cakeEntry 0.8s ease-out;
+        }
+
+        @keyframes cakeEntry {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .cake {
+            width: 200px;
+            height: 250px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .cake-layer {
+            width: 100%;
+            background: linear-gradient(135deg, #FFB6D9, #FF69B4);
+            border-radius: 10px 10px 20px 20px;
+            position: absolute;
+        }
+
+        .cake-layer-1 {
+            height: 80px;
+            bottom: 0;
+            box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cake-layer-2 {
+            height: 70px;
+            bottom: 85px;
+            width: 85%;
+            left: 7.5%;
+            background: linear-gradient(135deg, #FFD9E8, #FFB6D9);
+            box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cake-layer-3 {
+            height: 60px;
+            bottom: 160px;
+            width: 70%;
+            left: 15%;
+            background: linear-gradient(135deg, #FFF0F8, #FFD9E8);
+            box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .candle-group {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .candle {
+            width: 8px;
+            height: 50px;
+            background: linear-gradient(to right, #FFD700, #FFB700);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 15px solid #FF6B35;
+            filter: drop-shadow(0 0 5px #FFB700);
+            /* animation removed to disable flicker */
+        }
+
+        /* ============================================
+           GALLERY SECTION (Galeri Foto)
+           ============================================ */
+        .gallery-section {
+            width: 100%;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            background: linear-gradient(135deg, var(--white) 0%, rgba(255, 182, 217, 0.2) 100%);
+        }
+
+        .gallery-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .slider-container {
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow-color);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .slider-arrow:hover {
+            background: var(--gold);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 15px;
+        }
+
+        .slider-arrow.next {
+            right: 15px;
+        }
+
+        /* ============================================
+           CLOSING SECTION
+           ============================================ */
+        .closing-section {
+            width: 100%;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+        }
+
+        .closing-text {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .btn-replay {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--primary-pink) 100%);
+            color: var(--text-dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .btn-replay:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px var(--shadow-color);
+        }
+
+        /* ============================================
+           ANIMASI UMUM
+           ============================================ */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .opening-text {
+                font-size: 2rem;
+            }
+
+            .btn-start {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .title-main {
+                font-size: 1.8rem;
+            }
+
+            .recipient-name {
+                font-size: 1.4rem;
+            }
+
+            .photo-circle {
+                width: 180px;
+                height: 180px;
+            }
+
+            .letter-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .letter-content {
+                font-size: 1rem;
+            }
+
+            .countdown-display {
+                font-size: 3rem;
+            }
+
+            .cake {
+                width: 150px;
+                height: 200px;
+            }
+
+            .closing-text {
+
+            /* Balloon and tiup lilin styles removed */
+            .smoke {
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background: rgba(200,200,200,0.4);
+                border-radius: 50%;
+                filter: blur(4px);
+                z-index: 25;
+                pointer-events: none;
+            }
+
+            /* extinguished flame */
+            .flame.extinguished {
+                opacity: 0;
+                transform: scaleY(0.2) translateY(-6px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .opening-text {
+                font-size: 1.5rem;
+            }
+
+            .btn-start {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+
+            .title-main {
+                font-size: 1.4rem;
+            }
+
+            .recipient-name {
+                font-size: 1.1rem;
+            }
+
+            .photo-circle {
+                width: 140px;
+                height: 140px;
+            }
+
+            .letter-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .letter-content {
+                font-size: 0.95rem;
+            }
+
+            .countdown-timer {
+                font-size: 2rem;
+            }
+
+            .countdown-display {
+                font-size: 2.5rem;
+            }
+
+            .cake {
+                width: 120px;
+                height: 150px;
+            }
+
+            .closing-text {
+                font-size: 1rem;
+            }
+
+            .slider-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .slider-arrow.prev {
+                left: 8px;
+            }
+
+            .slider-arrow.next {
+                right: 8px;
+            }
+        }
+        /* Audio toggle button */
+        #audioToggle {
+            position: fixed;
+            left: 16px;
+            bottom: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--gold), var(--primary-pink));
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HALAMAN PEMBUKA (OPENING PAGE)
+         ============================================ -->
+    <div class="container-opening" id="openingPage">
+        <div class="stars-container" id="starsContainer"></div>
+        
+        <div class="opening-content">
+            <div class="opening-text">Ada sesuatu untukmu ❤️</div>
+            <button class="btn-start" id="btnStart">Klik Disini Sayang</button>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HALAMAN UTAMA (MAIN PAGE)
+         ============================================ -->
+    <div class="container-main" id="mainPage">
+        <!-- Rain hati bergerak ke atas -->
+        <div class="rain-container" id="rainContainer"></div>
+
+        <!-- *** SECTION: FOTO *** -->
+        <section class="photo-section" id="photoSection">
+            <div class="parallax-bg"></div>
+            
+            <div class="photo-frame">
+                <div class="photo-circle">
+                    <!-- GANTI FOTO DI SINI: Ubah src ke URL foto Anda -->
+                    <img src="https://via.placeholder.com/500?text=Foto+Kamu" alt="Foto Spesial" id="mainPhoto">
+                </div>
+            </div>
+
+            <div class="title-section">
+                <div class="title-main">🎉 Barakallah Fii Umrik Calon Istriku Tercinta 🎉</div>
+                <div class="recipient-name" id="recipientName">Sayang ❤️</div>
+            </div>
+        </section>
+
+        <!-- *** SECTION: COUNTDOWN *** -->
+        <section class="countdown-section" id="countdownSection">
+            <div class="countdown-display" id="countdownDisplay">5</div>
+            <p style="margin-top: 1rem; font-size: 1.2rem; color: var(--text-dark);">Surat akan terbuka dalam...</p>
+        </section>
+
+        <!-- *** SECTION: SURAT UCAPAN *** -->
+        <section class="letter-section" id="letterSection">
+            <div class="letter-box">
+                <div class="countdown-timer" id="countdownTimer" style="display: none;">5</div>
+                
+                <div class="letter-content typing" id="letterContent">
+                    <!-- GANTI ISI UCAPAN DI SINI -->
+                    Assalamu'alaikum warahmatullahi wabarakatuh, Sayang ❤️
+
+                    Tibalah lagi hari istimewa dimana dunia merayakan kelahiran malaikat terbaikku. Terimakasih telah mengisi hari-hariku dengan kebahagiaan, tawa, dan cinta yang tulus.
+
+                    Setiap detik bersama dirimu adalah berkah dari Allah SWT. Semoga di tahun ini, semua impian dan harapan kita menjadi kenyataan. Semoga kesehatan, kebahagiaan, dan rezeki melimpah untuk kita berdua.
+
+                    Dengan sepenuh hati, aku berdoa semoga Allah SWT menjadikan kita pasangan yang saling menguatkan, saling menyayangi, dan bersama-sama mencapai surga-Nya.
+
+                    Selamat ulang tahun, calon istri tercintaku 💕
+
+                    Semoga panjang umur, bahagia, dan selalu dalam lindungan Allah.
+
+                    Dengan segala cinta,
+                    Orang yang sangat menyayangimu 💙
+                </div>
+                
+                <div class="letter-from">~ Dengan Sepenuh Hati ❤️</div>
+            </div>
+        </section>
+
+        <!-- *** SECTION: KUE ULANG TAHUN *** -->
+        <section class="cake-section" id="cakeSection">
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-layer cake-layer-1"></div>
+                    <div class="cake-layer cake-layer-2"></div>
+                    <div class="cake-layer cake-layer-3"></div>
+                    
+                    <div class="candle-group">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame" style="animation-delay: 0.1s;"></div></div>
+                        <div class="candle"><div class="flame" style="animation-delay: 0.2s;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- *** SECTION: GALERI FOTO *** -->
+        <section class="gallery-section" id="gallerySection">
+            <div class="gallery-title">Kenangan Indah Bersama ✨</div>
+            
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <!-- GALERI FOTO - UBAH FOTO DI SINI -->
+                    <div class="slide active">
+                        <img src="images/calonku.jpeg" alt="Foto Calonku">
+                    </div>
+                    <div class="slide">
+                        <img src="images/kenangan1.jpeg" alt="Kenangan 1">
+                    </div>
+                    <div class="slide">
+                        <img src="images/kenangan2.jpeg" alt="Kenangan 2">
+                    </div>
+                    <div class="slide">
+                        <img src="images/kenangan3.jpeg" alt="Kenangan 3">
+                    </div>
+                </div>
+
+                <div class="slide-nav" id="slideNav"></div>
+
+                <button class="slider-arrow prev" id="prevBtn">❮</button>
+                <button class="slider-arrow next" id="nextBtn">❯</button>
+            </div>
+        </section>
+
+        <!-- *** SECTION: PENUTUP *** -->
+        <section class="closing-section" id="closingSection">
+            <div class="closing-text">
+                Semoga Allah selalu menjaga dan memberkahimu ❤️
+                <br><br>
+                Doa terbaik untuk kebahagiaan dan kesuksesan mu Sayangku ✨
+            </div>
+            <button class="btn-replay" id="btnReplay">🎂 Putar Ulang</button>
+        </section>
+    </div>
+
+    <!-- Audio background (gunakan file lokal di folder audio/) -->
+    <audio id="bgAudio" preload="auto" loop></audio>
+
+    <!-- Kontrol audio kecil (bisa pause/play) -->
+    <button id="audioToggle" aria-label="Toggle audio" style="display:none;">🔊</button>
+
+    <script>
+        // ============================================
+        // KONFIGURASI VARIABEL (MUDAH DIGANTI)
+        // ============================================
+        
+        // Nama penerima
+        let RECIPIENT_NAME = "Sayang ❤️";
+        
+        // URL musik sholawat (ganti dengan URL musik Anda)
+        // Jika Anda menyimpan file secara lokal di project, letakkan file mp3 di folder `audio/`.
+        // Contoh lokal: "audio/sholawat.mp3"
+        // Jika menggunakan link eksternal, ganti dengan URL langsung ke file mp3.
+        let MUSIC_URL = "audio/backsound.mp3";
+        
+        // URL foto utama calon istri
+        // Jika Anda menyimpan foto secara lokal, letakkan di folder `images/`.
+        // Contoh lokal: "images/calonku.jpg"
+        let MAIN_PHOTO_URL = "images/calonku.jpeg";
+        
+        // Array URL galeri foto (3 foto: 1 calon + 2 kenangan)
+        // Jika menggunakan file lokal, simpan di `images/` dan gunakan path relatif.
+        // Contoh lokal:
+        // ["images/calonku.jpg", "images/kenangan1.jpg", "images/kenangan2.jpg"]
+        let GALLERY_PHOTOS = [
+         
+            "images/kenangan1.jpeg",
+            "images/kenangan2.jpeg",
+            "images/kenangan3.jpeg"
+        ];
+        
+        // Durasi countdown sebelum surat terbuka (dalam detik)
+        let COUNTDOWN_SECONDS = 5;
+        
+        // Teks ucapan (isi surat)
+        let GREETING_TEXT = `Assalamu'alaikum warahmatullahi wabarakatuh, ${RECIPIENT_NAME}
+
+Tibalah lagi hari istimewa dimana dunia merayakan kelahiran malaikat terbaikku. Terimakasih telah mengisi hari-hariku dengan kebahagiaan, tawa, dan cinta yang tulus.
+
+Setiap detik bersama dirimu adalah berkah dari Allah SWT. Semoga di tahun ini, semua impian dan harapan kita menjadi kenyataan. Semoga kesehatan, kebahagiaan, dan rezeki melimpah untuk kita berdua.
+
+Dengan sepenuh hati, aku berdoa semoga Allah SWT menjadikan kita pasangan yang saling menguatkan, saling menyayangi, dan bersama-sama mencapai surga-Nya.
+
+Selamat ulang tahun, calon istri tercintaku 💕
+
+Semoga panjang umur, bahagia, dan selalu dalam lindungan Allah.
+
+Dengan segala cinta,
+Orang yang sangat menyayangimu 🤍`;
+
+        // ============================================
+        // VARIABEL GLOBAL
+        // ============================================
+        let currentSlide = 0;
+        // gunakan elemen audio tersemat di HTML agar mudah dikontrol
+        let audio = document.getElementById('bgAudio');
+        let isPlaying = false;
+        let countdownActive = false;
+
+        // ============================================
+        // FUNGSI UMUM
+        // ============================================
+        
+        // Fungsi untuk membuat bintang di halaman pembuka
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
+            }
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.textContent = '💕';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Fungsi untuk membuat efek sparkle
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        // Fungsi untuk membuat hujan hati
+        function createHeartRain() {
+            const container = document.getElementById('rainContainer');
+            container.innerHTML = ''; // Clear container
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-rain';
+                heart.textContent = '💕';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.fontSize = (1 + Math.random() * 1) + 'rem';
+                container.appendChild(heart);
+            }
+        }
+
+        // Fungsi untuk efek typing otomatis
+        function typeWriter(element, text, speed = 50) {
+            return new Promise((resolve) => {
+                element.textContent = '';
+                let index = 0;
+                element.classList.add('typing');
+                
+                function type() {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, speed);
+                    } else {
+                        element.classList.remove('typing');
+                        resolve();
+                    }
+                }
+                
+                type();
+            });
+        }
+
+        // Fungsi untuk memutar musik
+        function playMusic() {
+            if (!isPlaying) {
+                audio.src = MUSIC_URL;
+                audio.volume = 0.5;
+                audio.play().catch(err => console.log('Audio play error:', err));
+                isPlaying = true;
+            }
+        }
+
+        // Fungsi untuk menghentikan musik
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+            isPlaying = false;
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        // Tombol Start di halaman pembuka
+        document.getElementById('btnStart').addEventListener('click', function() {
+            document.getElementById('openingPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+            
+            // Scroll ke atas
+            window.scrollTo(0, 0);
+            
+            // Update nama dan foto
+            document.getElementById('recipientName').textContent = RECIPIENT_NAME;
+            document.getElementById('mainPhoto').src = MAIN_PHOTO_URL;
+            
+            // Mulai efek hujan hati
+            createHeartRain();
+            setInterval(createHeartRain, 5000);
+            
+            // Buat sparkle secara random
+            setInterval(() => {
+                createSparkle(Math.random() * window.innerWidth, Math.random() * window.innerHeight);
+            }, 500);
+            
+            // Mulai countdown
+            startCountdown();
+            
+            // Putar musik
+            playMusic();
+        });
+
+        // Nama penerima bisa diklik untuk diedit
+        document.getElementById('recipientName').addEventListener('click', function() {
+            const newName = prompt('Masukkan nama:', RECIPIENT_NAME);
+            if (newName) {
+                RECIPIENT_NAME = newName;
+                document.getElementById('recipientName').textContent = RECIPIENT_NAME;
+            }
+        });
+
+        // Tombol Replay
+        document.getElementById('btnReplay').addEventListener('click', function() {
+            stopMusic();
+            location.reload();
+        });
+
+        // Slider controls
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // ============================================
+        // FUNGSI COUNTDOWN
+        // ============================================
+        function startCountdown() {
+            if (countdownActive) return;
+            countdownActive = true;
+
+            let count = COUNTDOWN_SECONDS;
+            const countdownSection = document.getElementById('countdownSection');
+            const letterSection = document.getElementById('letterSection');
+            const display = document.getElementById('countdownDisplay');
+
+            countdownSection.style.display = 'flex';
+            letterSection.style.display = 'none';
+
+            const interval = setInterval(() => {
+                display.textContent = count;
+                count--;
+
+                if (count < 0) {
+                    clearInterval(interval);
+                    countdownSection.style.display = 'none';
+                    letterSection.style.display = 'flex';
+                    
+                    // Mulai efek typing untuk surat
+                    const letterContent = document.getElementById('letterContent');
+                    typeWriter(letterContent, GREETING_TEXT, 30);
+                }
+            }, 1000);
+        }
+
+        // ============================================
+        // FUNGSI SLIDER GALERI
+        // ============================================
+        function initSlider() {
+            const slider = document.getElementById('slider');
+            const slideNav = document.getElementById('slideNav');
+            const slides = slider.querySelectorAll('.slide');
+
+            // Inisialisasi dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (index === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(index));
+                slideNav.appendChild(dot);
+            });
+
+            // Auto-play slider
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            }, 5000);
+        }
+
+        function updateSlider() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                    dots[index].classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            const slides = document.querySelectorAll('.slide');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        // ============================================
+        // INISIALISASI HALAMAN
+        // ============================================
+        window.addEventListener('DOMContentLoaded', function() {
+            // Buat bintang di halaman pembuka
+            createStars();
+
+            // Update galeri foto
+            const slides = document.querySelectorAll('.slide');
+            GALLERY_PHOTOS.forEach((photo, index) => {
+                if (slides[index]) {
+                    slides[index].querySelector('img').src = photo;
+                }
+            });
+
+            // Inisialisasi slider
+            initSlider();
+
+            // Tambahkan efek touch/swipe untuk mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.getElementById('slider').addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            document.getElementById('slider').addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide();
+                }
+                if (touchEndX - touchStartX > 50) {
+                    prevSlide();
+                }
+            }
+
+            // Tambahkan click sparkle effect
+            document.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'DIV') return;
+                createSparkle(e.clientX, e.clientY);
+            });
+        });
+
+        // Parallax effect pada scroll
+        window.addEventListener('scroll', function() {
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            parallaxElements.forEach(el => {
+                const scrollPosition = window.pageYOffset;
+                el.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            });
+        });
+
+        // Inisialisasi audio dan kontrol toggle setelah DOM siap
+        window.addEventListener('DOMContentLoaded', function() {
+            // Pastikan elemen audio ada
+            if (!audio) audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.src = MUSIC_URL;
+                audio.volume = 0.5;
+                audio.preload = 'auto';
+                // tampilkan tombol kontrol audio
+                const at = document.getElementById('audioToggle');
+                if (at) {
+                    at.style.display = 'flex';
+                    updateAudioButton();
+                    at.addEventListener('click', () => {
+                        if (isPlaying) {
+                            stopMusic();
+                        } else {
+                            playMusic();
+                        }
+                        updateAudioButton();
+                    });
+                }
+            }
+        });
+
+        function updateAudioButton() {
+            const at = document.getElementById('audioToggle');
+            if (!at) return;
+            at.textContent = isPlaying ? '⏸️' : '🔊';
+        }
+
+        // Tiup lilin feature fully removed.
+    </script>
+</body>
+</html>
